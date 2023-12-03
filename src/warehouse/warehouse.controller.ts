@@ -44,12 +44,13 @@ export class WarehouseController {
 */
   @GrpcMethod('WarehouseService', 'getWh')
   async getWh(request: WarehouseRequest): Promise<WarehouseResponse> {
+    console.log("[.] getWh");
     return this.warehouseService.getWarehouse(request);
   }
 
   @GrpcMethod('WarehouseService', 'getAllWh')
   async getAllWh(request: Empty): Promise<AllWarehouseResponse> {
-    console.log("getAllWh");
+    console.log("[.] getAllWh");
     return this.warehouseService.getAllWarehouses();
   }
 }
