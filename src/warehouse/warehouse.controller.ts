@@ -41,7 +41,7 @@ export class WarehouseController {
   async updateStock(request: ProductWHRequest): Promise<ProductWHResponse> {
     return this.warehouseService.updateStock(request);
   }
-
+*/
   @GrpcMethod('WarehouseService', 'getWh')
   async getWh(request: WarehouseRequest): Promise<WarehouseResponse> {
     return this.warehouseService.getWarehouse(request);
@@ -49,7 +49,7 @@ export class WarehouseController {
 
   @GrpcMethod('WarehouseService', 'getAllWh')
   async getAllWh(request: Empty): Promise<AllWarehouseResponse> {
+    console.log("getAllWh");
     return this.warehouseService.getAllWarehouses();
   }
-  */
 }
