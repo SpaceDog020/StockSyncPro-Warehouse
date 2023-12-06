@@ -10,7 +10,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: '0.0.0.0:5001',
+        url: process.env.WAREHOUSE_GRPC_URL,
         package: protobufPackage,
         protoPath: join('node_modules/protos/proto/warehouse.proto')
       }
