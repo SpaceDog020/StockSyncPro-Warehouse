@@ -138,7 +138,8 @@ export class WarehouseService {
                 error: error,
             };
         }
-        await this.warehouseProductRepository.update(exist, request);
+        exist.stock = request.stock;
+        await this.warehouseProductRepository.save(exist);
         return {
             success: true,
             error: undefined,
