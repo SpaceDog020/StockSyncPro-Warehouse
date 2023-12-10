@@ -165,4 +165,38 @@ describe('WarehouseService', () => {
             });
         });
     });
+
+    describe('deleteProductFromWarehouse' , () => {
+        it('should return a success = true', async () => {
+            const warehouseProduct: WarehouseProduct = {
+                id: 1,
+                idProduct: 1,
+                idWH: 1,
+                stock: 1,
+            };
+            jest.spyOn(warehouseProductRepository, 'findOne').mockResolvedValueOnce(warehouseProduct);
+            jest.spyOn(warehouseProductRepository, 'delete').mockResolvedValueOnce(undefined);
+            const result = await service.deleteProductFromWarehouse({ idProduct: 1, idWH: 1 });
+            expect(result).toEqual({
+                success: true,
+                error: undefined,
+            });
+        });
+        it('should return a success = false', async () => {
+            const warehouseProduct: WarehouseProduct = {
+                id: 1,
+                idProduct: 1,
+                idWH: 1,
+                stock: 1,
+            };
+            jest.spyOn(warehouseProductRepository, 'findOne').mockResolvedValueOnce(undefined);
+            const result = await service.deleteProductFromWarehouse({ idProduct: 1, idWH: 1 });
+            expect(result).toEqual({
+                success: false,
+                error: {
+                    message: 'El producto no existe en el almacén',
+                },
+            });
+        });   
+    });
 });
