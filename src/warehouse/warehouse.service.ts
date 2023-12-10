@@ -85,6 +85,18 @@ export class WarehouseService {
                 error: error,
             };
         }
+        const exist2 = await this.warehouseRepository.findOne({ where:{
+            id: request.idWH
+        }});
+        if (!exist2) {
+            const error = {
+                message: 'El almacén no existe',
+            };
+            return {
+                success: false,
+                error: error,
+            };
+        }
         await this.warehouseProductRepository.save(request);
         return {
             success: true,
