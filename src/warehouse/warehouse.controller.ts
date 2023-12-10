@@ -19,26 +19,31 @@ export class WarehouseController {
 
   @GrpcMethod('WarehouseService', 'addWh')
   async addWh(request: CreateWarehouseRequest): Promise<WarehouseResponse> {
+    console.log("[.] addWh");
     return this.warehouseService.addWarehouse(request);
   }
 
   @GrpcMethod('WarehouseService', 'addProductToWh')
   async addProductToWh(request: ProductWHRequest): Promise<ProductWHResponse> {
+    console.log("[.] addProductToWh");
     return this.warehouseService.addProductToWarehouse(request);
   }
 
   @GrpcMethod('WarehouseService', 'deleteProductWh')
   async deleteProductWh(request: DeleteProductWHRequest): Promise<ProductWHResponse> {
+    console.log("[.] deleteProductWh");
     return this.warehouseService.deleteProductFromWarehouse(request);
   }
 
   @GrpcMethod('WarehouseService', 'updateWh')
   async updateWh(request: UpdateWarehouseRequest): Promise<WarehouseResponse> {
+    console.log("[.] updateWh");
     return this.warehouseService.updateWarehouse(request);
   }
 
   @GrpcMethod('WarehouseService', 'updateStock')
   async updateStock(request: ProductWHRequest): Promise<ProductWHResponse> {
+    console.log("[.] updateStock");
     return this.warehouseService.updateStock(request);
   }
 

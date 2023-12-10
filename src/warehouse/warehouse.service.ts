@@ -115,7 +115,9 @@ export class WarehouseService {
                 error: error,
             };
         }
-        await this.warehouseRepository.update(request.id, request);
+        warehouse.name = request.name;
+        warehouse.location = request.location;
+        await this.warehouseRepository.save(warehouse);
         return {
             warehouse: warehouse,
             error: undefined,
