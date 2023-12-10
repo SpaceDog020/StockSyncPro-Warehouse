@@ -10,6 +10,8 @@ import {
   WarehouseRequest,
   AllWarehouseResponse,
   Empty,
+  AllProductWHRequest,
+  AllProductWHResponse,
 } from './warehouse.pb';
 import { WarehouseService } from './warehouse.service';
 
@@ -57,5 +59,11 @@ export class WarehouseController {
   async getAllWh(request: Empty): Promise<AllWarehouseResponse> {
     console.log("[.] getAllWh");
     return this.warehouseService.getAllWarehouses();
+  }
+
+  @GrpcMethod('WarehouseService', 'getAllProductWh')
+  async getAllProductWh(request: AllProductWHRequest): Promise<AllProductWHResponse> {
+    console.log("[.] getAllProductWh");
+    return this.warehouseService.getAllProductWarehouse(request);
   }
 }

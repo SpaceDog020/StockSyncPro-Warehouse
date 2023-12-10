@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Warehouse, WarehouseProduct } from "./entities/warehouse.entity";
-import { AllWarehouseResponse, CreateWarehouseRequest, DeleteProductWHRequest, ProductWHRequest, ProductWHResponse, UpdateWarehouseRequest, WarehouseRequest, WarehouseResponse } from "./warehouse.pb";
+import { AllProductWHRequest, AllProductWHResponse, AllWarehouseResponse, CreateWarehouseRequest, DeleteProductWHRequest, ProductWH, ProductWHRequest, ProductWHResponse, UpdateWarehouseRequest, WarehouseRequest, WarehouseResponse } from "./warehouse.pb";
 
 @Injectable()
 export class WarehouseService {
@@ -48,6 +48,17 @@ export class WarehouseService {
         }
         return {
             warehouse: warehouse,
+            error: undefined,
+        };
+    }
+
+    async getAllProductWarehouse(request: AllProductWHRequest): Promise<AllProductWHResponse> {
+        const products: ProductWH[] = await this.warehouseProductRepository.find({
+            where: { idWH: request.idWH },
+            select: ["idProduct", "stock"]
+        });
+        return {
+            products: products,
             error: undefined,
         };
     }

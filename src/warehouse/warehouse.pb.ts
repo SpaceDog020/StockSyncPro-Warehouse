@@ -17,6 +17,11 @@ export interface Warehouse {
   location: string;
 }
 
+export interface ProductWH {
+  idProduct: number;
+  stock: number;
+}
+
 export interface CreateWarehouseRequest {
   name: string;
   location: string;
@@ -35,6 +40,15 @@ export interface ProductWHRequest {
 
 export interface ProductWHResponse {
   success: boolean;
+  error: Error | undefined;
+}
+
+export interface AllProductWHRequest {
+  idWH: number;
+}
+
+export interface AllProductWHResponse {
+  products: ProductWH[];
   error: Error | undefined;
 }
 
@@ -74,6 +88,8 @@ export interface WarehouseServiceClient {
   getWh(request: WarehouseRequest): Observable<WarehouseResponse>;
 
   getAllWh(request: Empty): Observable<AllWarehouseResponse>;
+
+  getAllProductWh(request: AllProductWHRequest): Observable<AllProductWHResponse>;
 }
 
 export interface WarehouseServiceController {
@@ -100,6 +116,10 @@ export interface WarehouseServiceController {
   getWh(request: WarehouseRequest): Promise<WarehouseResponse> | Observable<WarehouseResponse> | WarehouseResponse;
 
   getAllWh(request: Empty): Promise<AllWarehouseResponse> | Observable<AllWarehouseResponse> | AllWarehouseResponse;
+
+  getAllProductWh(
+    request: AllProductWHRequest,
+  ): Promise<AllProductWHResponse> | Observable<AllProductWHResponse> | AllProductWHResponse;
 }
 
 export function WarehouseServiceControllerMethods() {
@@ -112,6 +132,7 @@ export function WarehouseServiceControllerMethods() {
       "updateStock",
       "getWh",
       "getAllWh",
+      "getAllProductWh",
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
