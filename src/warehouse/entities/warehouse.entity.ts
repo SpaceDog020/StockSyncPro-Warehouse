@@ -20,7 +20,7 @@ export class WarehouseProduct {
     id: number;
 
     @Column()
-    idProduct: number;
+    idProduct: string;
 
     @Column()
     idWH: number;

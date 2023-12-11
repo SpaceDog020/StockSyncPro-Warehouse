@@ -18,7 +18,7 @@ export interface Warehouse {
 }
 
 export interface ProductWH {
-  idProduct: number;
+  idProduct: string;
   stock: number;
 }
 
@@ -33,7 +33,7 @@ export interface WarehouseResponse {
 }
 
 export interface ProductWHRequest {
-  idProduct: number;
+  idProduct: string;
   idWH: number;
   stock: number;
 }
@@ -53,7 +53,7 @@ export interface AllProductWHResponse {
 }
 
 export interface DeleteProductWHRequest {
-  idProduct: number;
+  idProduct: string;
   idWH: number;
 }
 

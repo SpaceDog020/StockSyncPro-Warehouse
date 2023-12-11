@@ -9,7 +9,6 @@ services:
     ports:
       - 5001:5001
     environment:
-      - DB_HOST=host.docker.internal
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_DATABASE=${DB_DATABASE}
